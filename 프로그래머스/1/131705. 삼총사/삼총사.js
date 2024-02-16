@@ -1,11 +1,34 @@
 function solution(number) {
-    let answer = 0;
-    for(let i = 0; i < number.length - 2; i++){
-        for(let j = i + 1; j < number.length - 1; j++){
-            for(let k = j + 1; k < number.length; k++){
-                number[i] + number[j] + number[k] === 0 ? answer++ : answer;
+    const n = number.length;
+    let count = 0;
+    number.sort((a, b) => a - b);
+
+
+    for (let i = 0; i < n - 2; i++) {
+        let left = i + 1;
+        let right = n - 1;
+
+        while (left < right) {
+
+            const sum = number[i] + number[left] + number[right];
+
+            if (sum === 0) {
+                count++;
+                // left++;
+                right--;
+                if (left === right) {
+                    right = n - 1;
+                    left++;
+                }
+            } else {
+                right--;
+                if (left === right) {
+                    right = n - 1;
+                    left++;
+                }
             }
         }
     }
-    return answer;
+
+    return count;
 }
