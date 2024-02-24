@@ -1,7 +1,6 @@
 function solution(left, right) {
     var answer = 0;
     for (left; left <= right; left++) {
-        console.log(solution1(left));
         answer += solution1(left);
     }
     return answer;
